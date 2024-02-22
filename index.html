@@ -1,0 +1,50 @@
+<audio id="player" autoplay controls><source src="https://www.myinstants.com/media/sounds/andre-ventura-aziado.mp3" type="audio/mp3"></audio>
+<iframe src="https://siga.marcacaodeatendimento.pt/Marcacao/MarcacaoInicio" frameborder="0"></iframe>
+<script>
+  window.onload = function() {
+    const iframe = document.querySelector('iframe');
+    const iframeWindow = iframe.contentWindow;
+
+    iframeWindow.addEventListener('load', async function() {
+      const player = document.getElementById('player');
+
+      // click a button that has attribute onclick="location.href='Entidades'"
+      const entidadesButton = document.querySelector('input[onclick="location.href=\'Entidades\'"]');
+      entidadesButton.click();
+
+      // click in the button title attribute IRN Registo
+      const irnRegistoButton = document.querySelector('button[title="IRN Registo"]');
+      irnRegistoButton.click();
+
+      // click on the first option of the select input
+      const idCategoriaSelect = document.querySelector('select[name="IdCategoria"]');
+      idCategoriaSelect.selectedIndex = 0;
+
+      // click on the first option of the select input
+      const idSubcategoriaSelect = document.querySelector('select[name="IdSubcategoria"]');
+      idSubcategoriaSelect.selectedIndex = 0;
+
+      // click in the button that has the text "Próximo"
+      const nextButton = document.querySelector('a:has-text("Next")');
+      nextButton.click();
+
+      // click on the first option of the select input
+      const idDistritoSelect = document.querySelector('select[name="IdDistrito"]');
+      idDistritoSelect.selectedIndex = 0;
+
+      // click on the first option of the select input
+      const idLocalidadeSelect = document.querySelector('select[name="IdLocalidade"]');
+      idLocalidadeSelect.selectedIndex = 0;
+
+      // click in the button that has the text "Next"
+      nextButton.click();
+
+      // verify if the text is present in the page "There are no appointment schedules available for the selected criteria."
+      const responseBody = document.body.textContent;
+      if (responseBody.includes('There are no appointment shedules available for the selected criteria.')) {
+        // play audio if text is present
+        console.log(await fetch('http://localhost:3000'));
+      }
+    });
+  }
+</script>
